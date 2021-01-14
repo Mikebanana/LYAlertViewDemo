@@ -39,70 +39,7 @@ class ViewController: UIViewController {
         return table
     }()
     
-    func click(_ sender: UIButton) {
-        
-        let item1 = LYAlertFactory()
-            .creatAlertShowItem(.title, "温馨提示")
-            .fontSize(17)
-//            .line(UIColor.lightGray, 0.5)
-            .titleColor(UIColor.orange)
-//        let item2 = LYAlertFactory()
-//            .creatAlertShowItem(.content, "是否确认向老师发起一对一错题辅导请求")
-//            .fontSize(16)
-//            .line(UIColor.lightGray, 0.5)
-//            .titleColor(UIColor.darkGray)
-//            .textAlignment(.center)
-//        
-        let item3 = LYAlertFactory()
-            .creatAlertInteractiveItem("帅的无敌")
-            .fontSize(15)
-            .titleColor(UIColor.darkGray)
-//            .btnRadius(5)
-            .btnHeight(30)
-            .btnMarin(10)
-            .line(UIColor.lightGray, 0.5, .bottom)
-
-//            .btnBackgroundColor(UIColor.red)
-            .action{
-            print("屌")
-        }
-        let item2 = LYAlertFactory()
-            .creatAlertShowItem(.content, "是否确认向老师发起一对一错题辅导请求")
-            .fontSize(16)
-            .line(UIColor.lightGray, 0.5)
-            .titleColor(UIColor.darkGray)
-            .textAlignment(.center)
-
-        let item4 = LYAlertFactory()
-            .creatAlertInteractiveItem("我再想想")
-            .fontSize(15)
-            .btnHeight(30)
-            .btnMarin(10)
-            .titleColor(UIColor.gray)
-            .line(UIColor.lightGray, 0.5, .left)
-
-//            .btnRadius(5)
-//            .btnBackgroundColor(UIColor.red)
-            .action{
-            print("屌")
-        }
-        let item5 = LYAlertFactory()
-            .creatAlertInteractiveItem("确认发起")
-            .fontSize(15)
-            .btnHeight(30)
-            .btnMarin(10)
-            .titleColor(UIColor.cyan)
-            .action{
-            print("牛")
-        }
-        let alert = LYAlertBuilder.init(nil, item2, [item4,item5])
-            .cornerRadius(15)
-            .maskAlpha(0.3)
-            .showAnimation(.shakeFromBottom, 0.5)
-            .hideAnimation(.shakeToBottom, 0.5)
-            .build()
-        alert?.show()
-    }
+  
     
 }
 extension ViewController:UITableViewDelegate,UITableViewDataSource{
