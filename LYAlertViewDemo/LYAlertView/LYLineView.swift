@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum LYLineType {
+public enum LYLineType {
     case bottom
     case left
 }

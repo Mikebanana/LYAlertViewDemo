@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LYAlertShowView: UIView {
+public class LYAlertShowView: UIView {
     var title:LYAlertTitleItem?
     
     var content:LYAlertTitleItem?

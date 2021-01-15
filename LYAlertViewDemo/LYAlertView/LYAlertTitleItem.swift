@@ -8,7 +8,7 @@
 
 import UIKit
 
-enum LYAlertTitleItemType {
+public enum LYAlertTitleItemType {
     case title
     case content
 }

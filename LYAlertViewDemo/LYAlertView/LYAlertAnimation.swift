@@ -6,7 +6,7 @@
 //
 
 import UIKit
-enum LYAlertAnimationPopType {
+public enum LYAlertAnimationPopType {
     case `default`
     case scale
     case shakeFromTop
@@ -17,7 +17,7 @@ enum LYAlertAnimationPopType {
     case dropFromRight
     
 }
-enum LYAlertAnimationDissType {
+public enum LYAlertAnimationDissType {
     case `default`
     case scale
     case shakeToTop

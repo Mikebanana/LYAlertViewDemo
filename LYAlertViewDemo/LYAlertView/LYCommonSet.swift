@@ -8,7 +8,7 @@
 
 import UIKit
 
-enum LYCommonSet {
+public enum LYCommonSet {
     //弹框默认宽度
     static let Awidth:CGFloat = 270.0
     //标题默认 size
@@ -33,7 +33,7 @@ enum LYCommonSet {
     static func RGBA (r:CGFloat, g:CGFloat, b:CGFloat, a:CGFloat)->UIColor { return UIColor.init(red: r/255.0, green: g/255.0, blue: b/255.0, alpha: a) }
 
     
-    typealias btnClosure = ()->()
+    public typealias btnClosure = ()->()
     //主屏幕
     static func keyWindows()->UIWindow?{
         if #available(iOS 13.0, *) {

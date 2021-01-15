@@ -9,13 +9,14 @@
 import Foundation
 import UIKit
 //具体工厂类
-class  LYAlertFactory:LYAlertFactoryProtocol{
+public class  LYAlertFactory:LYAlertFactoryProtocol{
+    public init() {}
     //创建展示 item
-    func creatAlertShowItem(_ type: LYAlertTitleItemType, _ text: String) -> LYAlertTitleShowProtocol {
+    public func creatAlertShowItem(_ type: LYAlertTitleItemType, _ text: String) -> LYAlertTitleShowProtocol {
      return LYAlertTitleItem.init(type, text: text)
     }
     //创建交互 item
-    func creatAlertInteractiveItem(_ text: String) -> LYAlertInteractiveItemProtocol {
+    public func creatAlertInteractiveItem(_ text: String) -> LYAlertInteractiveItemProtocol {
         return LYAlertInteractiveItem.init(text)
    
     }
