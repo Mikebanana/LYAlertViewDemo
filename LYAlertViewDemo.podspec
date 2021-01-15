@@ -15,7 +15,7 @@ Pod::Spec.new do |spec|
   #  summary should be tweet-length, and the description more in depth.
   #
 
-  spec.name         = "LYAlertViewDemo"
+  spec.name         = "LYAlertView"
   spec.version      = "0.0.2"
   spec.summary      = "一个具有高度拓展性的弹框轮子"
 
