@@ -8,9 +8,9 @@
 import UIKit
 
 public class LYAlertShowView: UIView {
-    var title:LYAlertTitleItem?
+    var title:(UIView&LYAlertItemProtocol)?
     
-    var content:LYAlertTitleItem?
+    var content:(UIView&LYAlertItemProtocol)?
     
     var buttons:[LYAlertInteractiveItem]?
     
@@ -20,12 +20,17 @@ public class LYAlertShowView: UIView {
     var hideType:LYAlertAnimationDissType = .default
     var showDuring:CFTimeInterval = 0.2
     var hideDuring:CFTimeInterval = 0.2
+    
+    var isHide = false
 
    lazy var blackView:UIView = {
     let blackView = UIView(frame: UIScreen.main.bounds)
     blackView.alpha = 0
     blackView.backgroundColor = LYCommonSet.RGBA(r: 0, g: 0, b: 0, a: 0.2)
-    
+    blackView.isUserInteractionEnabled = true
+    let tap = UITapGestureRecognizer()
+    tap.addTarget(self, action:#selector(tapBlack))
+    blackView.addGestureRecognizer(tap)
     return blackView
 
     }()
@@ -39,12 +44,13 @@ public class LYAlertShowView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.animation = LYAlertAnimation()
+       
      
     }
-    convenience init(_ title:LYAlertTitleShowProtocol?,_ content:LYAlertTitleShowProtocol,_ buttons:[LYAlertInteractiveItemProtocol]){
+    convenience init(_ title:(UIView&LYAlertItemProtocol)?,_ content:UIView&LYAlertItemProtocol,_ buttons:[UIView&LYAlertInteractiveItemProtocol]){
         self.init(frame: UIScreen.main.bounds)
-        self.title  = title as? LYAlertTitleItem
-        self.content = content as? LYAlertTitleItem
+        self.title  = title
+        self.content = content
         self.buttons = buttons as? [LYAlertInteractiveItem]
         if let b = self.buttons{
             for btn in b{
@@ -64,6 +70,14 @@ public class LYAlertShowView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
+    @objc func  tapBlack(){
+        self.endEditing(true)
+        
+       if  isHide{
+           hide()
+        }
+        
+    }
 
     
     public  func show(){
@@ -81,7 +95,7 @@ public class LYAlertShowView: UIView {
     
     public func hide(){
         self.animation?.hide(hideType, hideDuring, self.alertView)
-
+        self.endEditing(true)
         UIView.animate(withDuration: hideDuring, animations: {
             self.blackView.alpha = 0
         }) { (isCom) in

@@ -11,10 +11,9 @@ import UIKit
 
 public class LYAlertBuilder {
     var alertView:LYAlertShowView?
-    
-   public init(_ title:LYAlertTitleShowProtocol?,_ content:LYAlertTitleShowProtocol,_ buttons:[LYAlertInteractiveItemProtocol]) {
-        alertView = LYAlertShowView.init(title, content, buttons)
-    }
+    public init(_ title:(UIView&LYAlertItemProtocol)?,_ content:UIView&LYAlertItemProtocol,_ buttons:[UIView&LYAlertInteractiveItemProtocol]) {
+         alertView = LYAlertShowView.init(title, content, buttons)
+     }
     
     public  func borderColor(_ color:UIColor) -> Self {
         self.alertView?.alertView.layer.borderColor = color.cgColor
@@ -50,6 +49,10 @@ public class LYAlertBuilder {
     }
     public func maskAlpha(_ alpha:CGFloat) -> Self {
         self.alertView?.blackView.backgroundColor = LYCommonSet.RGBA(r: 0, g: 0, b: 0, a: alpha)
+        return self
+    }
+    public func tapMaskHide(_ isHide:Bool) -> Self {
+        self.alertView?.isHide = isHide
         return self
     }
     public  func showAnimation(_ type:LYAlertAnimationPopType,_ during:CFTimeInterval)->Self{

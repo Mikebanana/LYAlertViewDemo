@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "LYAlertView"
-  spec.version      = "0.0.3"
+  spec.version      = "0.0.4"
   spec.summary      = "一个具有高度拓展性的弹框轮子"
 
   # This description is used to generate tags and improve search results.

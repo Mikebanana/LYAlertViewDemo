@@ -18,7 +18,8 @@ public enum LYCommonSet {
     static let titleFont:CGFloat = 17.0
     //按钮间隔
     static let buttonMarin:CGFloat = 15
-    
+    //field间隔
+    static let fieldMarin:CGFloat = 30
     
     //响应 item 的高度
     static var InteractiveItemHeight:CGFloat = 74

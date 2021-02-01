@@ -20,8 +20,11 @@ class ViewController: UIViewController {
         "左侧弹出弹性动画",
         "右侧弹出弹性动画",
         "顶部靠左掉落动画",
-        "顶部靠右掉落动画"
+        "顶部靠右掉落动画",
+        "带弹框的"
     ]
+    
+    var text = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -354,9 +357,49 @@ extension ViewController:UITableViewDelegate,UITableViewDataSource{
                 .hideAnimation(.dropFromRight, 0.5)
                 .build()
             alert?.show()
+        }else  if indexPath.row == 8{
+            let item1 = LYAlertFactory()
+                .creatAlertShowItem(.title, "温馨提示")
+                .fontSize(17)
+                .titleColor(UIColor.darkGray)
+            let item2 = LYAlertFactory()
+                .creatAlertFieldItem("请输入老师的ID以发起辅导请求")
+                .fontSize(16)
+                .delegate(self)
+                .titleColor(UIColor.darkGray)
+                .keyboardType(.default)
+                .line(UIColor.lightGray, 0.5)
+    
+            let item4 = LYAlertFactory()
+                .creatAlertInteractiveItem("确认发起")
+                .fontSize(15)
+                .btnHeight(44)
+                .btnMarin(0)
+                .itemBackgroundColor(UIColor.orange)
+                .titleColor(UIColor.white)
+                .action { [weak self] in
+                    print(" 老师 ID ： \(self?.text ?? "")")
+                }
+            let alert = LYAlertBuilder.init(item1, item2, [item4])
+                .cornerRadius(15)
+                .maskAlpha(0.6)
+                .tapMaskHide(false)
+                .showAnimation(.dropFromRight, 0.5)
+                .hideAnimation(.dropFromRight, 0.5)
+                .build()
+            alert?.show()
         }
          
         
     }
     
+}
+extension ViewController:UITextFieldDelegate{
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if let s = textField.text{
+            self.text = s + string
+        }
+        
+        return true
+    }
 }

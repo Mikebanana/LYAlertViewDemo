@@ -8,23 +8,50 @@
 import UIKit
 
 class LYAlertView: UIView {
-    var title:LYAlertTitleItem?
+    var title:(UIView&LYAlertItemProtocol)?
     
-    var content:LYAlertTitleItem?
-    
+    var content:(UIView&LYAlertItemProtocol)?
+
     var buttons:[LYAlertInteractiveItem]?
     
 
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.clipsToBounds = true
+        NotificationCenter.default.addObserver(self, selector: #selector(keyBoard(not:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    convenience init(_ title:LYAlertTitleItem?,_ content:LYAlertTitleItem,_ buttons:[LYAlertInteractiveItem]){
+    @objc func keyBoard(not:Notification){
+        
+        let duration = not.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as! TimeInterval
+
+        let endFrame = (not.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+
+        let keyboardHeight = endFrame.origin.y
+        let margin = LYCommonSet.Kheith - keyboardHeight
+
+        if margin != 0{
+            
+         let offsetY =   self.frame.origin.y  -  (LYCommonSet.Kheith - margin - self.frame.height)
+            
+            UIView.animate(withDuration: duration) {
+                self.transform = CGAffineTransform.init(translationX: 0, y: -offsetY)
+            }
+            
+        }else{
+            UIView.animate(withDuration: duration) {
+                self.transform = CGAffineTransform.identity
+            }
+        }
+
+        
+    }
+    convenience init(_ title:(UIView&LYAlertItemProtocol)?,_ content:UIView&LYAlertItemProtocol,_ buttons:[LYAlertInteractiveItem]){
         self.init(frame: CGRect.zero)
         self.title = title
         self.content = content
@@ -65,6 +92,9 @@ class LYAlertView: UIView {
         }
         
     }
-    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+
+    }
 
 }
